@@ -30,7 +30,7 @@ class UseCommand(Command):
 
     def _set_temp(self, bin_path, lib_path):
         fp = open(PATH_HOME_ETC_TEMP, 'w')
-        fp.write('deactivate &> /dev/null\nPATH_PYTHONBREW_TEMP="%s"\nPATH_PYTHONBREW_TEMP_LIB="%s"\n' % (bin_path, lib_path))
+        fp.write('deactivate 1>/dev/null 2>/dev/null || true\nPATH_PYTHONBREW_TEMP="%s"\nPATH_PYTHONBREW_TEMP_LIB="%s"\n' % (bin_path, lib_path))
         fp.close()
 
 UseCommand()
