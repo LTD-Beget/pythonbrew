@@ -30,7 +30,10 @@ class LocateCommand(Command):
         )
 
     def run_command(self, options, args):
-        bin_ = args[0] if args[0] else 'python'
+        if args:
+            bin_ = args[0]
+        else:
+            bin_ = 'python'
 
         # target python interpreter
         if options.python:
