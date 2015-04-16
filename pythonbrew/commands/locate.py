@@ -44,6 +44,10 @@ class LocateCommand(Command):
         else:
             pkgname = get_using_python_pkgname()
 
+        if not pkgname:
+            logger.error("Unknown python version: ( 'pythonbrew locate -p VERSION' )")
+            sys.exit(1)
+
         if options.venv:
             venv_pkgdir = os.path.join(PATH_VENVS, pkgname)
             venv_dir = os.path.join(venv_pkgdir, options.venv)
@@ -52,7 +56,6 @@ class LocateCommand(Command):
                 sys.exit(1)
 
             bindir = os.path.join(venv_dir, 'bin')
-
         else:
             bindir = os.path.join(PATH_PYTHONS, pkgname, 'bin')
 
@@ -61,7 +64,6 @@ class LocateCommand(Command):
             sys.exit(1)
 
         path = os.path.join(bindir, bin_)
-
         logger.log(path)
 
 LocateCommand()
