@@ -65,7 +65,7 @@ def _get_or_default(section, option, default=''):
         return default
 
 # setuptools download
-DISTRIBUTE_SETUP_DLSITE = _get_or_default('distribute', 'url')
+SETUPTOOLS_DLSITE = _get_or_default('setuptools', 'url')
 
 # buildout bootstrap download
 BOOTSTRAP_DLSITE = _get_or_default('bootstrap', 'url')

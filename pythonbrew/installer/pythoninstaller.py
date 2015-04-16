@@ -10,7 +10,7 @@ from pythonbrew.util import makedirs, symlink, Package, is_url, Link,\
     fileurl_to_path, is_python30, is_python31, is_python32,\
     get_macosx_deployment_target, Version
 from pythonbrew.define import PATH_BUILD, PATH_DISTS, PATH_PYTHONS,\
-    ROOT, PATH_LOG, DISTRIBUTE_SETUP_DLSITE,\
+    ROOT, PATH_LOG, SETUPTOOLS_DLSITE,\
     PATH_PATCHES_MACOSX_PYTHON25, PATH_PATCHES_MACOSX_PYTHON24,\
     PATH_PATCHES_MACOSX_PYTHON26, PATH_PATCHES_MACOSX_PYTHON27, PATH_PATCHES_ALL
 from pythonbrew.downloader import get_python_version_url, Downloader,\
@@ -242,7 +242,7 @@ class PythonInstaller(object):
         if options.no_setuptools:
             logger.log("Skip installation of setuptools.")
             return
-        download_url = DISTRIBUTE_SETUP_DLSITE
+        download_url = SETUPTOOLS_DLSITE
         filename = Link(download_url).filename
         download_file = os.path.join(PATH_DISTS, filename)
 
@@ -253,7 +253,7 @@ class PythonInstaller(object):
         path_python = os.path.join(install_dir,"bin","python")
         try:
             s = Subprocess(log=self.logfile, cwd=PATH_DISTS, verbose=self.options.verbose)
-            logger.info("Installing distribute into %s" % install_dir)
+            logger.info("Installing setuptools into %s" % install_dir)
             s.check_call([path_python, filename])
             # installing pip
             easy_install = os.path.join(install_dir, 'bin', 'easy_install')
