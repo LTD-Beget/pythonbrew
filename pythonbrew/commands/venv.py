@@ -79,6 +79,8 @@ class VenvCommand(Command):
         if os.path.exists(self._venv_clone):
             logger.info('Remove virtualenv-clone. (%s)' % self._venv_clone_dir)
             rm_r(self._venv_clone_dir)
+        if not os.path.exists(PATH_DISTS):
+            os.makedirs(PATH_DISTS)
         if not os.access(PATH_DISTS, os.W_OK):
             logger.error("Can not initialize venv command: Permission denied.")
             sys.exit(1)
